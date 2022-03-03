@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="./resources/ol.css"> 
+  <link rel="stylesheet" href="resources/fontawesome-all.min.css">
+  <link rel="stylesheet" href="./resources/ol-layerswitcher.css">
+  <link rel="stylesheet" href="./resources/qgis2web.css">
+  <!-- icono de pestaña -->
+  <link rel="shortcut icon" href="./images/001.ico" type="image/x-icon">>
+  <!-- Normalize -->
+  <link rel="stylesheet" href="./resources/normalize.css">
+  <!-- coordenadas -->
+   <!-- <link href="./css/ol.css" media="all" type="text/css" rel="stylesheet">     -->
+	<link href="css/main.css" media="all" type="text/css" rel="stylesheet">
+	<script src="./js/jquery-2.1.1.min.js" defer="defer"></script>  
+	<script src="./js/ol-debug.js"></script> 
+	<script src="js/main.js" defer="defer"></script>
+  <!-- coordenadas -->
+  <style>
+    .search-layer {
+      top: 135px;
+      left: .5em;
+    }
+
+    .ol-touch .search-layer {
+      top: 180px;
+    }
+  </style>
+  <style>
+    html,
+    body {
+      background-color: #ffffff;
+      width: 1000vw;
+      height: 1000vh;
+    }
+    .ol-control button {
+      background-color: rgb(184, 181, 181) !important;
+      color: #000000 !important;
+      border: 1px solid black !important;
+    }
+/* mover boton zoom */
+ /* .ol-zoom{} */
+
+
+     /* @media screen and (max-width: 1200px){
+     .ol-zoom {
+       top:65%;
+       left:95%
+      } 
+    } */
+   
+    
+    .measure-control,
+    .geolocate,
+    .gcd-gl-control .ol-control {
+      background-color: rgba(255, 255, 255, .4) !important;
+      padding: 3px !important;
+    }
+/* mover barra de escala */
+    .ol-scale-line {
+      background: none !important;
+     }
+       @media screen and (max-width: 455px){
+     .ol-scale-line {
+      border-radius: 4px;
+      bottom: 13px; /*estaban en 8 px */
+      left: 40px;
+      padding: 2px;
+      position: absolute;
+
+      } 
+     }    
+     
+     
+     
+
+    .ol-scale-line-inner {
+
+      border: 2px solid #b7b0b0 !important;
+      border-top: none !important;
+      background: rgba(255, 255, 255, 0.5) !important;
+      color: rgb(10, 10, 10) !important;
+      
+    }
+    
+     
+    
+  </style>
+
+  <style>
+   
+    /* mover el boton de geoloc */
+    
+     /* .geolocate {
+  bottom: 186px;
+  left: 6px;
+} 
+
+    .ol-touch .geolocate {
+      top: 80px;
+    } */
+     /* @media screen and (max-width: 1200px){
+     .geolocate {
+       top: 68.5%;
+       left:89%;
+
+      } 
+    } */
+    
+  </style>
+  <style>
+    .tooltip {
+      position: relative;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 4px;
+      color: white;
+      padding: 4px 8px;
+      opacity: 0.7;
+      white-space: nowrap;
+    }
+
+    .tooltip-measure {
+      opacity: 1;
+      font-weight: bold;
+    }
+
+    .tooltip-static {
+      background-color: #ffcc33;
+      color: black;
+      border: 1px solid white;
+    }
+
+    .tooltip-measure:before,
+    .tooltip-static:before {
+      border-top: 6px solid rgba(0, 0, 0, 0.5);
+      border-right: 6px solid transparent;
+      border-left: 6px solid transparent;
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      margin-left: -7px;
+      left: 50%;
+    }
+
+    .tooltip-static:before {
+      border-top-color: #ffcc33;
+    }
+/* mover boton de medicion */
+    /* .measure-control {
+      position: absolute;
+      left: 97%;
+      top: 73.5%; 
+      text-align: left;
+      
+    } */
+    /* @media screen and (max-width: 1200px){
+     .measure-control {
+       top:68.8%;
+       left:83.5%;
+
+      }
+    } */ 
+
+    /* .ol-touch .measure-control {
+      top: 130px;
+    } */
+
+  </style>
+  <style>
+     html,
+    body,
+    #map {
+      position: fixed;
+      position: absolute;
+      width: 100%;
+      height: 97%;
+      padding: 0;
+      margin: 0;
+    }
+     /* @media screen and (max-width: 1200px) {
+     #map {
+      width: 100%;
+      height: 92.3%;
+   }
+  }    */
+ 
+  </style>
+  <title>CCUS 2010-2060</title>
+</head>
+
+
+   <!-- encabezado  -->
+    <header class=""  >
+    <div class="wrapper">
+      <div class="logo">CCUS 2010-2060 Vs OTBN,Red Colacal y Red de Agua Potable.  </div>
+      
+    </div>
+   </header> 
+  <!-- encabezado -->
+  <body><div id="map" class="map"></div>
+    <!-- cooredenadas -->
+    <div id="bar">
+      <!-- <p id="pan">Pan</p>  -->
+     <p id="drawPoint">Marcar</p>
+     <p id="erasePoint">Limpiar</p>
+    </div>
+    <div id="inputs">
+     <input type="text" name="latitud" placeholder="Latitud">
+     <input type="text" name="longitud" placeholder="Longitud">
+     <input type="hidden" name="wkt">
+     <button id="enviar">Enviar</button>
+    </div>
+    <div id="coordinates"></div>
+    <!-- coordenadas -->
+  
+  
+  
+    <!-- barra lateral -->
+    <div id="sidebar">
+      <div class="toggle-btn">
+
+          <span>&#9776</span>
+      </div>
+
+      <ul>
+          <li>
+              <img src="images/logo.jpg" alt="Logo Fazt" class="logo">
+          </li>
+          <br>
+          <li><a href="https://drive.google.com/file/d/15NQFoN_CDls2nwh9jkSOTl3PG9LbGnN8/view?usp=sharing" target="_blank">Tesina </a></li>
+          <br>
+          <li><a href="https://docs.google.com/document/d/1rN1I2BDpaAGlqD_M-A4PyOR0SF_uSjBB/edit" target="_blank">Bibliografia</a></li>
+          <br>
+          <li><a  >CONTACTOS:<br /> <img class="left"  src="images/gmail.png" ><aside> marcelopepenal@gmail.com</aside> <br /> <img class="left"  src="images/whatsapp.png"><aside>telefono:3874587238</aside></a></li>
+
+      </ul>
+  </div>
+  <!-- barra lateral -->
+ 
+  <div class="container-fluid">
+
+    <div id="popup" class="ol-popup">
+      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+      <div id="popup-content"></div>
+    </div>
+  </div>
+  <script src="./barra.js"></script>
+  <script src="resources/qgis2web_expressions.js"></script>
+  <script src="resources/polyfills.js"></script>
+  <script src="./resources/functions.js"></script>
+  <script src="./resources/ol.js"></script>  
+  <script src="./resources/ol-layerswitcher.js"></script>
+  <script src="layers/HuellaurbanaAo2010_3.js"></script>
+  <script src="layers/HuellaurbanaAo2020_4.js"></script>
+  <script src="layers/HuellaurbanaAo2030prediccin_5.js"></script>
+  <script src="layers/HuellaurbanaAo2040prediccin_6.js"></script>
+  <script src="layers/HuellaurbanaAo2050prediccin_7.js"></script>
+  <script src="layers/HuellaurbanaAo2060prediccin_8.js"></script>
+  <script src="layers/Red_hdrica_9.js"></script>
+  <script src="layers/Redcloacal_10.js"></script>
+  <script src="layers/Red_Agua_11.js"></script>
+  <script src="layers/OTBN_12.js"></script>
+  <script src="styles/HuellaurbanaAo2010_3_style.js"></script>
+  <script src="styles/HuellaurbanaAo2020_4_style.js"></script>
+  <script src="styles/HuellaurbanaAo2030prediccin_5_style.js"></script>
+  <script src="styles/HuellaurbanaAo2040prediccin_6_style.js"></script>
+  <script src="styles/HuellaurbanaAo2050prediccin_7_style.js"></script>
+  <script src="styles/HuellaurbanaAo2060prediccin_8_style.js"></script>
+  <script src="styles/Red_hdrica_9_style.js"></script>
+  <script src="styles/Redcloacal_10_style.js"></script>
+  <script src="styles/Red_Agua_11_style.js"></script>
+  <script src="styles/OTBN_12_style.js"></script>
+  <script src="./layers/layers.js" type="text/javascript"></script>
+  <script src="./resources/Autolinker.min.js"></script>
+  <script src="./resources/qgis2web.js"></script>
+</body>
+
+</html>

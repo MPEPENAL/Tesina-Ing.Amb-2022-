@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* html,
+body {
+  min-height: 100%;
+}
+
+#mapa {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+} */
+
+#bar,
+#coordinates,
+#inputs {
+  background-color: rgba(255, 251, 251, 0.8);
+  position: absolute;
+  padding: 12px;
+  margin: 10px 0 0 55px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+#bar > p,
+#inputs > button {
+  padding: 6px 12px;
+  display: inline-block;
+  color: rgb(255, 254, 254);
+  border-radius: 4px;
+  background-color: #5cb85c;
+  border: 1px solid #4cae4c;
+  cursor: pointer;
+}
+
+#bar > p:hover,
+#bar > p.active {
+  background-color: #449d44;
+  border-color: #398439;
+}
+/* mover marcar_limpiar*/
+#bar {
+  /* position: absolute; /* el elemento se mueve a la par dela imag 
+  top: 39.5em;
+  right: 0.5em;
+  text-align: left;
+  position: absolute;
+  left: 80%;
+  top: 80%;  */
+  bottom: 3.2em;
+  right: 0.5em;
+}
+@media screen and (max-width: 455px) {
+  #bar {
+    font-size: 7px;
+    /* width: 85%;
+    height: 6.5%; */
+    top: 85%;
+    height: 6%;
+    right: 1%;
+    padding: 2px 1px;
+  }
+}
+/* mover cooredenadas*/
+#coordinates {
+  /* position: absolute; /* //el elemento se mueve a la par dela imag //*/
+  /* top: 39.5em;
+  right: 13em;
+  text-align: left; 
+
+  margin-top: 34.5%;
+  margin-left: 75%;  */
+
+  bottom: 4.2em;
+  right: 12.8em;
+}
+@media screen and (max-width: 455px) {
+  #coordinates {
+    /* font-size: 10%;
+    width: 5%;
+    top: 85%;
+    height: 6%;
+    right: 45%;*/
+    padding: 1px 1px;
+    font-size: 7px;
+    bottom: 5.2em;
+    right: 15em;
+  }
+}
+/* mover enviar */
+#inputs {
+  /* position: absolute; /* //el elemento se mueve a la par dela imag //*/
+  /* top: 92%;
+  right: 10.5%; 
+  text-align: left; 
+
+  top: 43.8em;
+  right: 0.5em;*/
+  /* position: absolute; */
+  bottom: -1.2em;
+  right: 0.5em;
+}
+@media screen and (max-width: 455px) {
+  #inputs {
+    /* font-size: 5%;
+    width: 85%;
+    height: 6.5%;
+    top: 93%;
+    /* width: 95%;
+    height: 6%; 
+    right: 1%;
+    padding: 1% 1%; */
+    font-size: 4px;
+    bottom: -5em;
+
+    padding: 1px 1px;
+  }
+}
+#inputs > input[type="text"] {
+  border: 1px solid rgb(206, 205, 205);
+  padding: 7px;
+  border-radius: 4px;
+}
+
+#inputs > button {
+  background-color: #337ab7;
+  border: 1px solid #2e6da4;
+}
+
+#inputs > button:hover {
+  background-color: #286090;
+  border: 1px solid #204d74;
+}
